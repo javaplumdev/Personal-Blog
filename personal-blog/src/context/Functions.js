@@ -7,6 +7,8 @@
 import {
 	createUserWithEmailAndPassword,
 	onAuthStateChanged,
+	signInWithEmailAndPassword,
+	signOut,
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase/firebase-config';
@@ -27,4 +29,12 @@ const register = async (email, password) => {
 	return createUserWithEmailAndPassword(auth, email, password);
 };
 
-export { register };
+const login = (email, password) => {
+	return signInWithEmailAndPassword(auth, email, password);
+};
+
+const logout = () => {
+	return signOut(auth);
+};
+
+export { register, login, auth, logout };
