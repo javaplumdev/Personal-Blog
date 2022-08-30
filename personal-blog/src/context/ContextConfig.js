@@ -1,11 +1,25 @@
 import React, { useState, createContext } from 'react';
+import { register } from './Functions';
+import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 const MyContext = createContext();
 
 const ContextProvider = ({ children }) => {
-	const [name, setName] = useState('John Doe');
+	let navigate = useNavigate();
+	const [userGeneratedUID, setUserGeneratedUID] = useState();
 
-	return <MyContext.Provider value={{ name }}>{children}</MyContext.Provider>;
+	const generateUID = () => {
+		setUserGeneratedUID(uuidv4);
+	};
+
+	return (
+		<MyContext.Provider
+			value={{ navigate, register, userGeneratedUID, generateUID }}
+		>
+			{children}
+		</MyContext.Provider>
+	);
 };
 
 export { MyContext, ContextProvider };
