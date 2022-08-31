@@ -22,3 +22,11 @@ body {
 .buttons {
 	background: red;
 }
+
+.post-content {
+	background: rgba(240, 255, 255, 0.29);
+	padding: 0.5em 2em;
+	border-radius: 20px;
+	width: 100%;
+	text-align: center;
+}

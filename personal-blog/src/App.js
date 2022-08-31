@@ -6,6 +6,7 @@ import Registerform from './components/Registerform';
 import Reacthelmet from './components/Reacthelmet';
 import Home from './components/Home';
 import NavbarComponent from './components/NavbarComponent';
+import PostContent from './components/PostContent';
 import { ContextProvider } from './context/ContextConfig';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
@@ -31,6 +32,7 @@ function App() {
 					<Route path="/" element={<Loginform />} />
 					<Route path="/register" element={<Registerform />} />
 					<Route path="/home" element={<Home />} />
+					<Route path="/post" element={<PostContent />} />
 				</Routes>
 			</div>
 		</ContextProvider>
