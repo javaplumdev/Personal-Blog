@@ -5,6 +5,7 @@ import Loginform from './components/Loginform';
 import Registerform from './components/Registerform';
 import Reacthelmet from './components/Reacthelmet';
 import Home from './components/Home';
+import NavbarComponent from './components/NavbarComponent';
 import { ContextProvider } from './context/ContextConfig';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
@@ -25,6 +26,7 @@ function App() {
 					draggable
 					pauseOnHover
 				/>
+				<NavbarComponent />
 				<Routes>
 					<Route path="/" element={<Loginform />} />
 					<Route path="/register" element={<Registerform />} />

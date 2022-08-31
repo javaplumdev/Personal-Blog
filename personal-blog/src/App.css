@@ -18,3 +18,7 @@ body {
 .form {
 	padding: 1em;
 }
+
+.buttons {
+	background: red;
+}

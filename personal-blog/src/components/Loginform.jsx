@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { MyContext } from '../context/ContextConfig';
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Loginform = () => {
 	const { login, navigate } = useContext(MyContext);
@@ -14,6 +15,15 @@ const Loginform = () => {
 		try {
 			await login(email, password);
 			navigate('/home');
+			toast.success('Welcome!', {
+				position: 'top-center',
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
 		} catch (error) {
 			console.log(error.message);
 		}
