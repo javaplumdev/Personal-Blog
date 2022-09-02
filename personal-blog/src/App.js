@@ -12,6 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
 function App() {
+	document.body.classList.add('background');
+
 	return (
 		<ContextProvider>
 			<div className="App">
@@ -27,7 +29,7 @@ function App() {
 					draggable
 					pauseOnHover
 				/>
-				<NavbarComponent />
+
 				<Routes>
 					<Route path="/" element={<Loginform />} />
 					<Route path="/register" element={<Registerform />} />

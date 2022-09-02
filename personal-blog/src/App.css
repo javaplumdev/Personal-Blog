@@ -8,11 +8,19 @@ body {
 	font-family: 'Poppins', sans-serif;
 }
 
+.App {
+	color: rgb(255, 255, 255);
+}
+
 .login-form-holder {
 	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.background {
+	background: #232323;
 }
 
 .form {
