@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { MyContext } from '../../context/ContextConfig';
 
 const MainComponent = () => {
+	const { postContents } = useContext(MyContext);
+
 	return (
 		<>
 			<div>
@@ -13,7 +16,18 @@ const MainComponent = () => {
 			</div>
 
 			<div className="mt-4">
-				<p>Hi</p>
+				{postContents?.map &&
+					postContents.map((item) => {
+						return (
+							<div key={item.id}>
+								<h1>{item.title}</h1>
+								<div>
+									<p>{item.content}</p>
+								</div>
+								<hr></hr>
+							</div>
+						);
+					})}
 			</div>
 		</>
 	);
