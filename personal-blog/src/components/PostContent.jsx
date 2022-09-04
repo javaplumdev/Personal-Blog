@@ -2,9 +2,10 @@ import React, { useState, useContext } from 'react';
 import { Container, FloatingLabel, Form, Button } from 'react-bootstrap';
 import NavbarComponent from './NavbarComponent';
 import { MyContext } from '../context/ContextConfig';
+import { CategoryData } from '../context/Data';
 
 const PostContent = () => {
-	const { postContent } = useContext(MyContext);
+	const { postContent, pickCategory, category } = useContext(MyContext);
 
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
@@ -42,6 +43,29 @@ const PostContent = () => {
 							onChange={(e) => setContent(e.target.value)}
 						/>
 					</FloatingLabel>
+					<div
+						className={
+							category.length === 0
+								? ''
+								: 'bg-primary rounded p-1 w-auto text-center'
+						}
+					>
+						{category}
+					</div>
+					<hr></hr>
+					<div className="d-flex flex-wrap">
+						{CategoryData.map((item) => {
+							return (
+								<div
+									key={item.id}
+									className="categories m-1 bg-light text-dark p-1 rounded"
+									onClick={() => pickCategory(item.name)}
+								>
+									{item.name}
+								</div>
+							);
+						})}
+					</div>
 				</div>
 			</Container>
 		</>

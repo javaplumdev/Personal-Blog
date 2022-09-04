@@ -4,7 +4,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { MyContext } from '../../context/ContextConfig';
 
 const MainComponent = () => {
-	const { postContents } = useContext(MyContext);
+	const { postContents, users, user } = useContext(MyContext);
 
 	return (
 		<>
@@ -20,9 +20,17 @@ const MainComponent = () => {
 					postContents.map((item) => {
 						return (
 							<div key={item.id}>
-								<h1>{item.title}</h1>
+								{item.content.length >= 30 ? (
+									<h2>{item.title.slice(0, 30)}...</h2>
+								) : (
+									<h2>{item.title}</h2>
+								)}
 								<div>
-									<p>{item.content}</p>
+									{item.content.length >= 30 ? (
+										<p>{item.content.slice(0, 30)}...</p>
+									) : (
+										<p>{item.content}</p>
+									)}
 								</div>
 								<hr></hr>
 							</div>

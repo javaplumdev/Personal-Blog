@@ -11,6 +11,8 @@ import {
 	serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '../firebase/firebase-config';
+import { toast } from 'react-toastify';
+import { CategoryData } from './Data';
 
 const MyContext = createContext();
 
@@ -21,6 +23,7 @@ const ContextProvider = ({ children }) => {
 	const [users, setUsers] = useState();
 
 	const [postContents, setPostContents] = useState();
+	const [category, setCategory] = useState([]);
 
 	const generateUID = () => {
 		setUserGeneratedUID(uuidv4);
@@ -43,7 +46,25 @@ const ContextProvider = ({ children }) => {
 				owner: user.uid,
 				timestamp: serverTimestamp(),
 			});
+
+			toast.success('Posted!', {
+				position: 'top-center',
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+
+			navigate('/home');
 		}
+	};
+
+	const pickCategory = (name) => {
+		const findCategory = CategoryData.find((item) => item.name === name);
+
+		setCategory(findCategory.name);
 	};
 
 	useEffect(() => {
@@ -69,6 +90,9 @@ const ContextProvider = ({ children }) => {
 	return (
 		<MyContext.Provider
 			value={{
+				category,
+				pickCategory,
+				users,
 				postContents,
 				postContent,
 				navigate,
