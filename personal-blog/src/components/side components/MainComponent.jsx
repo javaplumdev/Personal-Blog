@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { MyContext } from '../../context/ContextConfig';
+import { styles } from '../../context/StylesData';
 
 const MainComponent = () => {
 	const { postContents, users, user } = useContext(MyContext);
@@ -19,21 +20,27 @@ const MainComponent = () => {
 				{postContents?.map &&
 					postContents.map((item) => {
 						return (
-							<div key={item.id}>
-								{item.content.length >= 30 ? (
-									<h2>{item.title.slice(0, 30)}...</h2>
-								) : (
-									<h2>{item.title}</h2>
-								)}
+							<Link
+								key={item.id}
+								to={`/posts/${item.id}`}
+								className={styles.textNone}
+							>
 								<div>
 									{item.content.length >= 30 ? (
-										<p>{item.content.slice(0, 30)}...</p>
+										<h2>{item.title.slice(0, 30)}...</h2>
 									) : (
-										<p>{item.content}</p>
+										<h2>{item.title}</h2>
 									)}
+									<div>
+										{item.content.length >= 30 ? (
+											<p>{item.content.slice(0, 30)}...</p>
+										) : (
+											<p>{item.content}</p>
+										)}
+									</div>
+									<hr></hr>
 								</div>
-								<hr></hr>
-							</div>
+							</Link>
 						);
 					})}
 			</div>

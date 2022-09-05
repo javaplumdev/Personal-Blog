@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { Container, FloatingLabel, Form, Button } from 'react-bootstrap';
-import NavbarComponent from './NavbarComponent';
 import { MyContext } from '../context/ContextConfig';
 import { CategoryData } from '../context/Data';
 
@@ -12,7 +11,6 @@ const PostContent = () => {
 
 	return (
 		<>
-			<NavbarComponent />
 			<Container>
 				<div className="mt-5">
 					<div className="d-flex justify-content-between align-items-center ">

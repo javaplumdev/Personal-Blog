@@ -9,6 +9,8 @@ import {
 	setDoc,
 	doc,
 	serverTimestamp,
+	query,
+	orderBy,
 } from 'firebase/firestore';
 import { db } from '../firebase/firebase-config';
 import { toast } from 'react-toastify';
@@ -68,11 +70,16 @@ const ContextProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
+		const queryPosts = query(
+			collection(db, 'posts'),
+			orderBy('timestamp', 'desc')
+		);
+
 		onSnapshot(collection(db, 'users'), (snapshot) => {
 			setUsers(snapshot.docs.map((doc) => ({ ...doc.data() })));
 		});
 
-		onSnapshot(collection(db, 'posts'), (snapshot) => {
+		onSnapshot(queryPosts, (snapshot) => {
 			setPostContents(snapshot.docs.map((doc) => ({ ...doc.data() })));
 		});
 	}, []);
