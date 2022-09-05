@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { MyContext } from '../../context/ContextConfig';
 import { styles } from '../../context/StylesData';
+import { Spinner } from 'react-bootstrap';
 
 const MainComponent = () => {
-	const { postContents, users, user } = useContext(MyContext);
+	const { postContents, users, user, isLoading } = useContext(MyContext);
 
 	return (
 		<>
@@ -17,7 +18,15 @@ const MainComponent = () => {
 			</div>
 
 			<div className="mt-4">
-				{postContents?.map &&
+				{isLoading ? (
+					<div
+						className="d-flex justify-content-center align-items-center"
+						style={{ height: '65vh' }}
+					>
+						<Spinner animation="border" variant="light" />
+					</div>
+				) : (
+					postContents?.map &&
 					postContents.map((item) => {
 						return (
 							<Link
@@ -42,7 +51,8 @@ const MainComponent = () => {
 								</div>
 							</Link>
 						);
-					})}
+					})
+				)}
 			</div>
 		</>
 	);

@@ -27,6 +27,8 @@ const ContextProvider = ({ children }) => {
 	const [postContents, setPostContents] = useState();
 	const [category, setCategory] = useState([]);
 
+	const [isLoading, setIsLoading] = useState(true);
+
 	const generateUID = () => {
 		setUserGeneratedUID(uuidv4);
 	};
@@ -77,10 +79,14 @@ const ContextProvider = ({ children }) => {
 
 		onSnapshot(collection(db, 'users'), (snapshot) => {
 			setUsers(snapshot.docs.map((doc) => ({ ...doc.data() })));
+
+			setIsLoading(false);
 		});
 
 		onSnapshot(queryPosts, (snapshot) => {
 			setPostContents(snapshot.docs.map((doc) => ({ ...doc.data() })));
+
+			setIsLoading(false);
 		});
 	}, []);
 
@@ -109,6 +115,7 @@ const ContextProvider = ({ children }) => {
 				login,
 				users,
 				logout,
+				isLoading,
 				user,
 			}}
 		>

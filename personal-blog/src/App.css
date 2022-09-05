@@ -42,3 +42,7 @@ body {
 .categories {
 	cursor: pointer;
 }
+
+.content {
+	word-wrap: break-word;
+}
